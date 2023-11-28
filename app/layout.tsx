@@ -16,13 +16,18 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className='grid min-h-screen grid-cols-[auto_1fr] justify-center overflow-hidden'>
-        <Navbar/>
-        <main className='w-full bg-gradient-to-b from-slate-100 to-blue-100'>
-        <div className="">
-            {children}
+    <html>
+      <body>
+        <div className='grid min-h-screen grid-cols-[auto_1fr] justify-center overflow-hidden'>
+          <Navbar/>
+          <main className='w-full bg-gradient-to-b from-slate-100 to-blue-100'>
+          <div className="">
+              {children}
+          </div>
+          </main>
         </div>
-        </main>
-      </div>
+      </body>
+    </html>
+    
   )
 }
