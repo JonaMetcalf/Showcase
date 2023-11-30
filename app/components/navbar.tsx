@@ -11,11 +11,8 @@ interface TabState {
     tab2: boolean
 }
 
-function handleClick (tab : {tab:number}) {
-    return (null)
-}
 
-export default function () {
+export default function Navbar() {
     const [tabState, setTabState] = useState<TabState>({tab1:false, tab2:false})
 
     return (
