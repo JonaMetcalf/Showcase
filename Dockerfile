@@ -54,4 +54,4 @@ ENV PORT 8080
 
 # server.js is created by next build from the standalone output
 # https://nextjs.org/docs/pages/api-reference/next-config-js/output
-CMD [ "npm", "start" ]
+CMD ["node_modules/.bin/next", "start"]
