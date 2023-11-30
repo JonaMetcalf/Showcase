@@ -11,7 +11,7 @@ RUN  npm install --production
 
 # Rebuild the source code only when needed
 FROM base AS builder
-WORKDIR /
+WORKDIR /app
 COPY --from=deps ./app/node_modules ./node_modules
 COPY . .
 
@@ -37,10 +37,9 @@ RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
 COPY --from=builder /app/public ./public
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
 
-# Set the correct permission for prerender cache
-RUN mkdir .next
-RUN chown nextjs:nodejs .next
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing
