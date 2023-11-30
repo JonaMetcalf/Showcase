@@ -18,9 +18,9 @@ export default function RootLayout({
   return (
     <html>
       <body>
-        <div className='grid min-h-screen grid-cols-[auto_1fr] justify-center overflow-hidden'>
+        <div className=''>
           <Navbar/>
-          <main className='w-full bg-gradient-to-b from-slate-100 to-blue-100'>
+          <main className='ml-48 bg-gradient-to-b from-slate-100 to-blue-100'>
           <div className="">
               {children}
           </div>
