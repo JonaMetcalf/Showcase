@@ -10,7 +10,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 export default function App() {
   const [data, setData] = useState();
   const [sliderValue, setSliderValue] = useState(0);
-  const [text, setText] = useState({"intro":"","intro2":"","3dsim":""});
+  const [text, setText] = useState({"intro":"","intro2":"","3dsim":"","3dcomp":""});
 
   const MAX_POINTS = 43000
   const [coords, setCoords] = useState(new Float32Array(MAX_POINTS * 3))
@@ -38,22 +38,23 @@ export default function App() {
   
 
   function loadFrame (frame) {
-    points.current.geometry.attributes.position.array = new Float32Array(data[frame.toString()]["data"])
-    //points.current.geometry.computeBoundingBox(); fix Nan values in array 
+    points.current.geometry.attributes.position.array = new Float32Array(data[frame.toString()]["data"]) 
     points.current.geometry.attributes.position.needsUpdate = true
   }
 
   return (
     <div className='w-full h-full py-20 px-5 justify-center space-y-5'>
       <div className='flex justify-center flex-col'>
-        <h1 className='text-4xl mx-auto pb-10'>MPM modelling of subaerial and underwater landslides</h1>
+        <h1 className='text-4xl text-center mx-auto pb-10'>MPM modelling of subaerial and underwater landslides</h1>
         <p className='mx-auto w-4/6 text-center text-xl'>{text.intro}</p>
         <br/>
         
         <br/>
         <h1 className='mx-auto w-4/6 text-2xl underline'>3D asymmetric simulation</h1>
         <br/>
-        <p className='mx-auto w-4/6 text-lg'>{text["3dsim"]}</p>
+        <p className='mx-auto w-4/6 text-lg font-bold'>Interactive simulation results</p>
+        
+        <p className='mx-auto w-4/6 text-lg pt-4'>{text["3dsim"]}</p>
         
       </div>
       <div className='w-4/6 mx-auto outline outline-1 p-3'>
@@ -107,18 +108,51 @@ export default function App() {
           </Canvas>
         </div>
       </div>
+      
+      <p className='mx-auto w-4/6 text-lg font-bold pt-5'>Simulation paramater comparison</p>
+      <p className='mx-auto w-4/6 text-lg'>{text["3dcomp"]}</p>
+      <div className='w-2/6 mx-auto'>
+        <Carousel autoPlay={true} infiniteLoop={true}>
+            <div className='p-15'>
+                <img src="/cross3d10.png" />
+            </div>
+            <div className='p-15'>
+                <img src="/cross3d34.png" />
+            </div>
+            <div className='p-15'>
+                <img src="/cross3d107.png" />
+            </div>
+            <div className='p-15'>
+                <img src="/cross3d137.png" />
+            </div>
+        </Carousel>
+      </div>
 
 
-      <h1 className='mx-auto w-4/6 text-2xl underline pt-10'>2D case - Comparison with lab results</h1>
+      <h1 className='mx-auto w-4/6 text-2xl underline pt-10'>2D simulation</h1>
       <p className='mx-auto w-4/6 text-lg'>Below is the comparison of the simulation results with the equivalent real-world lab results.</p>
 
-      <div className='w-3/6 mx-auto'>
+      <div className='w-2/6 mx-auto'>
         <Carousel autoPlay={true} infiniteLoop={true}>
             <div className='p-15'>
                 <img src="/labresults.png" />
             </div>
             <div className='p-15'>
                 <img src="/labresultspoly.png" />
+            </div>
+        </Carousel>
+      </div>
+
+      <h1 className='mx-auto w-4/6 text-2xl underline pt-10'>2D submarine simulation</h1>
+      <p className='mx-auto w-4/6 text-lg'>A similar collapse in water was simulated, and compared to the empirical results obtained from Pinzon and Cabrera in their paper <a href='https://doi.org/10.1063/1.5099494' className='underline text-blue-800'>Planar collapse of a submerged granular column</a>.</p>
+
+      <div className='w-2/6 mx-auto'>
+        <Carousel autoPlay={true} infiniteLoop={true}>
+            <div className='p-15'>
+                <img src="/Picture1.png" />
+            </div>
+            <div className='p-15'>
+                <img src="/Picture2.png" />
             </div>
         </Carousel>
       </div>
